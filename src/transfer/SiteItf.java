@@ -11,7 +11,5 @@ import java.rmi.RemoteException;
 public interface SiteItf extends Remote {
 
 	void deposer(int i) throws RemoteException;
-	char[] solde() throws RemoteException;
-	int add(int i, int j) throws RemoteException;
-	
+	void solde() throws RemoteException;
 }

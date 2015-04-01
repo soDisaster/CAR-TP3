@@ -24,20 +24,14 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 
 	@Override
 	public void deposer(int i)  throws RemoteException{
-		System.out.println("Dépôt");
+		solde = solde + i;
 	}
 
 	@Override
-	public char[] solde()  throws RemoteException{
-		char [] tmp =  {'z','t','g'};
-		return tmp; 
+	public void solde() throws RemoteException{
+		System.out.println(solde);
 	}
 
-	@Override
-	public int add(int i, int j)  throws RemoteException{
-		
-		return i+j;
-	}
 
 
 }

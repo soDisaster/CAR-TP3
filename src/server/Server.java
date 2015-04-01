@@ -13,15 +13,13 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		
 		try {
-        	// 10000 est le port sur lequel sera publié le service. Nous devons le préciser à la fois sur le registry et à la fois à la création du stub.
-            SiteItf skeleton = new SiteImpl("Test"); // Génère un stub vers notre service.
-            LocateRegistry.createRegistry(1099);
-            Naming.rebind("Site", skeleton); // publie notre instance sous le nom "Add"
+        	LocateRegistry.createRegistry(1099);
+ 
         } catch (Exception e) {
             e.printStackTrace();
         }
 		
-		/*SiteItf compte = new SiteImpl("Bob");
-		Naming.bind("Bob", compte);*/
+		SiteItf compte = new SiteImpl("Bob");
+		Naming.bind("Bob", compte);
 	} 
 }
