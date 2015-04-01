@@ -6,11 +6,11 @@ import java.rmi.registry.LocateRegistry;
 import tree.transfer.SiteItf;
 
 /**
- * MainClientArbre
+ * MainClientTree
  * @author Anne-Sophie Saint-Omer & Thibault Rosa
  */
 
-public class MainClientArbre {
+public class MainClientTree {
 	
 	public static void main(String[] args) throws Exception {
 		

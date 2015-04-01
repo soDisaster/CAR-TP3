@@ -2,10 +2,18 @@ package graph.client;
 
 import java.rmi.registry.LocateRegistry;
 
-public class Main_Registery {
+
+/**
+ * Main_Registery 
+ * @author Anne-Sophie Saint-Omer & Thibault Rosa
+ */
+
+public class MainRegistery {
 
 	public static void main(String[] args) {
 		try {
+			
+			// Register port 1099
 			LocateRegistry.createRegistry(1099);
 
 		} catch (Exception e) {

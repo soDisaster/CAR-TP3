@@ -41,7 +41,7 @@ Ainsi que les méthodes de transfert.
 MainClientGraph.java & MainClientTree.java
 ------------------------------------------
 
-Les objets sont créés. On définit leurs fils et leur père (sauf pour la racine).
+Les objets sont créés. On définit leurs fils et leur père (sauf pour la racine) ou les voisins.
 
 
 MainRegistery.java
