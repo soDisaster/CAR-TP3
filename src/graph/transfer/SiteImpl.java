@@ -13,7 +13,7 @@ import java.util.List;
 public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 
 	private SiteItf father;
-	private List<SiteItf> sons;
+	private List<SiteItf> neighbours;
 	private String msg;
 	
 	
@@ -23,54 +23,35 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 */
 	public SiteImpl() throws RemoteException {
 		super();
-		this.sons = new ArrayList<SiteItf>();
+		this.neighbours = new ArrayList<SiteItf>();
 	}
 	
 	/**
 	 * **
 	 * Constructor with parameters
-	 * @param f father
-	 * @param s sons
+	 * @param n neighbours
 	 * @throws RemoteException
 	 */
-	public SiteImpl(SiteItf f, List<SiteItf> s) throws RemoteException {
+	public SiteImpl(SiteItf f, List<SiteItf> n) throws RemoteException {
 		super();
-		this.father = f;
-		this.sons = s;
+		this.neighbours = n;
 	}
-	
-	/**
-	 *  The RMIObject is root or not.
-	 *  @throws RemoteException
-	 */
-	public boolean isRoot() throws RemoteException {
-		return this.father == null;
-	}
-	
-	/**
-	 *  Set father of RMIObject.
-	 *  @param New father of RMIObject
-	 *  @throws RemoteException
-	 */
-	public void setFather(SiteItf f) throws RemoteException {
-		this.father = f;
-	}
-	
+		
 	/**
 	 *  Set sons of RMIObject.
 	 *  @param List of sons 
 	 *  @throws RemoteException
 	 */
-	public void setSons(List<SiteItf> f) throws RemoteException {
-		this.sons = f;
+	public void setNeighbours(List<SiteItf> f) throws RemoteException {
+		this.neighbours = f;
 	}
 
 	/**
-	 *  Add a son to an element
+	 *  Add a neighbour to an element
 	 *  @throws RemoteException
 	 */
-	public void addSon(SiteItf s) throws RemoteException {
-		this.sons.add(s);
+	public void addNeighbour(SiteItf s) throws RemoteException {
+		this.neighbours.add(s);
 	}
 	
 	/**
@@ -81,20 +62,19 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	public boolean receive(String msg) throws RemoteException {
 		this.msg = msg;
 		System.out.println(this.msg);
-		return this.sendToSons();
+		return this.sendToNeighbours();
 	}
 
 	/**
-	 *  Send the message to all the sons.
+	 *  Send the message to all neighbours.
 	 *  @throws RemoteException
 	 */
-	public boolean sendToSons() throws RemoteException {
-		if(sons.size() > 0){
-			for(SiteItf s : sons ){
+	public boolean sendToNeighbours() throws RemoteException {
+		if(neighbours.size() > 0){
+			for(SiteItf s : neighbours){
 				s.receive(this.msg);
 			}	
 		}
-
 		return true;
 	}
 

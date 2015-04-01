@@ -41,4 +41,9 @@ public interface SiteItf extends Remote {
 	 *  @throws RemoteException
 	 */
 	void setFather(SiteItf s) throws RemoteException;
+
+
+
+	
+
 }

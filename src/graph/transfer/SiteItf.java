@@ -12,10 +12,10 @@ import java.util.List;
 public interface SiteItf extends Remote {
 
 	/**
-	 *  Add a son to an element
+	 *  Add a neighbour to an element
 	 *  @throws RemoteException
 	 */
-	void addSon(SiteItf s) throws RemoteException;
+	void addNeighbour(SiteItf s) throws RemoteException;
 	
 	/**
 	 * The RMI object receive a message.
@@ -25,20 +25,9 @@ public interface SiteItf extends Remote {
 	boolean receive(String msg) throws RemoteException;
 	
 	/**
-	 *  Send the message to all the sons.
+	 *  Send the message to all neighbours.
 	 *  @throws RemoteException
 	 */
-	boolean sendToSons() throws RemoteException;
-	
-	/**
-	 *  The RMIObject is root or not.
-	 *  @throws RemoteException
-	 */
-	boolean isRoot() throws RemoteException;
-	
-	/**
-	 * set father of the RMIObject
-	 *  @throws RemoteException
-	 */
-	void setFather(SiteItf s) throws RemoteException;
+	boolean sendToNeighbours() throws RemoteException;
+
 }

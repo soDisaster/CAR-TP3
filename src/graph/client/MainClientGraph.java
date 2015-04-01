@@ -3,10 +3,10 @@ package graph.client;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
-import tree.transfer.SiteItf;
+import graph.transfer.SiteItf;
 
 /**
- * MainClientTree
+ * MainClientGraph
  * @author Anne-Sophie Saint-Omer & Thibault Rosa
  */
 
@@ -28,20 +28,21 @@ public class MainClientGraph {
 		SiteItf RMIObj5 = (SiteItf) Naming.lookup("5");
 		SiteItf RMIObj6 = (SiteItf) Naming.lookup("6");
 		
-		// Add sons
-		RMIObj1.addSon(RMIObj2);
-		RMIObj1.addSon(RMIObj5);
-		RMIObj2.addSon(RMIObj3);
-		RMIObj2.addSon(RMIObj4);
-		RMIObj5.addSon(RMIObj6);
+		// Add neighbours
+		RMIObj1.addNeighbour(RMIObj2);
+		RMIObj1.addNeighbour(RMIObj5);
+		RMIObj2.addNeighbour(RMIObj1);
+		RMIObj2.addNeighbour(RMIObj3);
+		RMIObj2.addNeighbour(RMIObj4);
+		RMIObj3.addNeighbour(RMIObj2);
+		RMIObj4.addNeighbour(RMIObj2);
+		RMIObj4.addNeighbour(RMIObj6);
+		RMIObj5.addNeighbour(RMIObj2);
+		RMIObj5.addNeighbour(RMIObj6);
+		RMIObj6.addNeighbour(RMIObj1);
+		RMIObj6.addNeighbour(RMIObj5);
 		
-		// Set fathers
-		RMIObj1.setFather(null);
-		RMIObj2.setFather(RMIObj1);
-		RMIObj5.setFather(RMIObj1);
-		RMIObj3.setFather(RMIObj2);
-		RMIObj4.setFather(RMIObj2);
-		RMIObj6.setFather(RMIObj5);
+
 	}
 
 }
