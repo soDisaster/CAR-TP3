@@ -10,7 +10,7 @@ import tree.transfer.SiteItf;
  * @author Anne-Sophie Saint-Omer & Thibault Rosa
  */
 
-public class MainClientTree {
+public class MainClientGraph {
 	
 	public static void main(String[] args) throws Exception {
 		
