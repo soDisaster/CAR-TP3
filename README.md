@@ -66,15 +66,24 @@ Dossier tests
 Tests en français 
 ------------------
 
-Tests client serveur.
-Tests sur les lookups.
-Créations des objets RMI. 
+Tests client serveur :
+Nous pourrions tester les lookups.
 
-
+Nous pourrions utliser Naming.bind pour référencer l'objet RMI sur le serveur de noms et tester à l'aide d'un lookup si l'objet a bien été référencé.
 
 
 Exécution
 ---------
+
+Dans le dossier jar : 
+
+Exécution du fichier launchGraph.sh -> ./launchGraph.sh
+ou LaunchTree.sh -> ./launchTree.sh
+
+Attendre pendant 10 secondes pour éviter des problèmes de syncronisation entre le lancement des Nodes et la construction du Graph ou du Tree.
+Sleep de 10 secondes dans le script pour permettre au Node de bien s'exécuter.
+
+! Avant de lancer un graphe ou un arbre, il faut s'assurer que le serveur de noms est coupé !
 
 
 
