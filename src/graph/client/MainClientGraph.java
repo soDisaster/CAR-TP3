@@ -39,7 +39,7 @@ public class MainClientGraph {
 		RMIObj4.addNeighbour(RMIObj6);
 		RMIObj5.addNeighbour(RMIObj2);
 		RMIObj5.addNeighbour(RMIObj6);
-		RMIObj6.addNeighbour(RMIObj1);
+		RMIObj6.addNeighbour(RMIObj4);
 		RMIObj6.addNeighbour(RMIObj5);
 		
 

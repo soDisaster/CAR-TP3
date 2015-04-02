@@ -12,11 +12,14 @@ import java.util.List;
 
 public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 
-	private SiteItf father;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7527243865828709621L;
 	private List<SiteItf> neighbours;
 	private String msg;
-	
-	
+
+
 	/**
 	 * Constructor without parameters
 	 * @throws RemoteException
@@ -25,7 +28,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 		super();
 		this.neighbours = new ArrayList<SiteItf>();
 	}
-	
+
 	/**
 	 * **
 	 * Constructor with parameters
@@ -36,7 +39,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 		super();
 		this.neighbours = n;
 	}
-		
+
 	/**
 	 *  Set sons of RMIObject.
 	 *  @param List of sons 
@@ -53,16 +56,24 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	public void addNeighbour(SiteItf s) throws RemoteException {
 		this.neighbours.add(s);
 	}
-	
+
 	/**
 	 * The RMI object receive a message.
 	 * @param msg Message which receive by the RMI object
 	 * @throws RemoteException
 	 */
-	public boolean receive(String msg) throws RemoteException {
-		this.msg = msg;
-		System.out.println(this.msg);
-		return this.sendToNeighbours();
+	public boolean receive(byte[] msg) throws RemoteException {
+		
+		String test = new String (msg);
+		
+		if(!test.equals(this.msg)){
+			
+			this.msg = new String (msg);
+			System.out.println("Message reçu : "+this.msg);
+			return this.sendToNeighbours();
+			
+		}
+		return true;
 	}
 
 	/**
@@ -72,7 +83,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	public boolean sendToNeighbours() throws RemoteException {
 		if(neighbours.size() > 0){
 			for(SiteItf s : neighbours){
-				s.receive(this.msg);
+				s.receive(this.msg.getBytes());
 			}	
 		}
 		return true;

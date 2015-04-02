@@ -1,4 +1,4 @@
-package tree.client;
+package registry;
 
 import java.rmi.registry.LocateRegistry;
 

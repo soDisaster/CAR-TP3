@@ -2,7 +2,6 @@ package tree.transfer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  * RMI Object Interface
@@ -22,7 +21,7 @@ public interface SiteItf extends Remote {
 	 * @param msg Message which receive by the RMI object
 	 * @throws RemoteException
 	 */
-	boolean receive(String msg) throws RemoteException;
+	boolean receive(byte[] msg) throws RemoteException;
 	
 	/**
 	 *  Send the message to all the sons.

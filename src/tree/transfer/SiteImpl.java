@@ -12,6 +12,10 @@ import java.util.List;
 
 public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1527648916426651056L;
 	private SiteItf father;
 	private List<SiteItf> sons;
 	private String msg;
@@ -78,9 +82,9 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 * @param msg Message which receive by the RMI object
 	 * @throws RemoteException
 	 */
-	public boolean receive(String msg) throws RemoteException {
-		this.msg = msg;
-		System.out.println(this.msg);
+	public boolean receive(byte[] msg) throws RemoteException {
+		this.msg = new String(msg);
+		System.out.println("Message reçu : "+this.msg);
 		return this.sendToSons();
 	}
 
@@ -91,7 +95,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	public boolean sendToSons() throws RemoteException {
 		if(sons.size() > 0){
 			for(SiteItf s : sons ){
-				s.receive(this.msg);
+				s.receive(this.msg.getBytes());
 			}	
 		}
 
