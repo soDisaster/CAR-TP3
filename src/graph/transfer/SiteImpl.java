@@ -13,7 +13,8 @@ import java.util.List;
 public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 
 	/**
-	 * 
+	 * neighbours list of neighbours
+	 * msg the message which is send
 	 */
 	private static final long serialVersionUID = -7527243865828709621L;
 	private List<SiteItf> neighbours;
@@ -26,6 +27,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 */
 	public SiteImpl() throws RemoteException {
 		super();
+		
 		this.neighbours = new ArrayList<SiteItf>();
 	}
 
@@ -37,6 +39,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 */
 	public SiteImpl(SiteItf f, List<SiteItf> n) throws RemoteException {
 		super();
+		
 		this.neighbours = n;
 	}
 
@@ -46,6 +49,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public void setNeighbours(List<SiteItf> f) throws RemoteException {
+		
 		this.neighbours = f;
 	}
 
@@ -54,6 +58,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public void addNeighbour(SiteItf s) throws RemoteException {
+		
 		this.neighbours.add(s);
 	}
 
@@ -66,10 +71,11 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 		
 		String test = new String (msg);
 		
+		// if the graph is a cycle 
 		if(!test.equals(this.msg)){
 			
 			this.msg = new String (msg);
-			System.out.println("Message reçu : "+this.msg);
+			System.out.println("Message reçu : " + this.msg);
 			return this.sendToNeighbours();
 			
 		}
@@ -81,12 +87,34 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public boolean sendToNeighbours() throws RemoteException {
-		if(neighbours.size() > 0){
-			for(SiteItf s : neighbours){
+		
+		if(this.neighbours.size() > 0){
+			for(SiteItf s : this.neighbours){
 				s.receive(this.msg.getBytes());
 			}	
 		}
 		return true;
+	}
+	
+	
+	/**
+	 *  Return all neighbours.
+	 *  @throws RemoteException
+	 */
+	public List<SiteItf> getNeighbours(){
+		
+		return this.neighbours;
+		
+	}
+
+		/**
+	 * Return the message
+	 * @return the message of the RMIObject
+	 * @throws RemoteException
+	 */
+	public String getMsg()throws RemoteException {
+		
+		return this.msg;
 	}
 
 }

@@ -2,6 +2,7 @@ package tree.transfer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * RMI Object Interface
@@ -42,6 +43,34 @@ public interface SiteItf extends Remote {
 	void setFather(SiteItf s) throws RemoteException;
 
 
+	/**
+	 *  Return the father of the RMI object
+	 *  @throws RemoteException
+	 */
+	SiteItf getFather() throws RemoteException;
+
+	
+	/**
+	 *  Set sons of RMIObject.
+	 *  @param List of sons 
+	 *  @throws RemoteException
+	 */
+	void setSons(List<SiteItf> l) throws RemoteException;
+
+	/**
+	 *  Return list of sons of the RMI object
+	 *  @throws RemoteException
+	 */
+	List<SiteItf> getSons()throws RemoteException;
+
+	/**
+	 * Return the message
+	 * @return the message of the RMIObject
+	 * @throws RemoteException
+	 */
+	String getMsg() throws RemoteException;
+	
+	
 
 	
 

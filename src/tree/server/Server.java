@@ -24,7 +24,8 @@ public class Server {
 				LocateRegistry.getRegistry(1099);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				
+				System.err.println("Erreur etting port : "+e);
 			}
 			
 			// Instanstation of one RMI Object
@@ -39,6 +40,7 @@ public class Server {
 			String msg ="";
 			// If message is different of quit, the programm wait to read a message
 			while(!msg.equals("quit")){
+				
 				msg = sc.nextLine();
 				RMIObject.receive(msg.getBytes());
 			}

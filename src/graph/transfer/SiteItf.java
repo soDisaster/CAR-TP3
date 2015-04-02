@@ -27,5 +27,12 @@ public interface SiteItf extends Remote {
 	 *  @throws RemoteException
 	 */
 	boolean sendToNeighbours() throws RemoteException;
-
+	
+	/**
+	 * Return the message
+	 * @return the message of the RMIObject
+	 * @throws RemoteException
+	 */
+	String getMsg()throws RemoteException;
+	
 }

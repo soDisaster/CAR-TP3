@@ -11,6 +11,7 @@ import java.rmi.registry.LocateRegistry;
 public class MainRegistery {
 
 	public static void main(String[] args) {
+		
 		try {
 			
 			// Register port 1099

@@ -24,6 +24,9 @@ Le package graph contient :
 - Un package server contenant Server.java.
 
 
+Nous avons également un dossier test.
+
+
 SiteItf.java
 ------------
 
@@ -51,7 +54,31 @@ MainRegistery.java
 Server.java
 -----------
 
-Serveur, lit les messages envoyés par chacun des objets et exécute la méthode sreceive.
+Serveur, lit les messages envoyés par chacun des objets et exécute la méthode receive.
+
+
+Tests JUnit
+-----------
+
+Dossier tests
+
+
+Tests en français 
+------------------
+
+Tests client serveur.
+Tests sur les lookups.
+Créations des objets RMI. 
+
+
+
+
+Exécution
+---------
+
+
+
+
 
 
 

@@ -25,8 +25,9 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 * Constructor without parameters
 	 * @throws RemoteException
 	 */
-	public SiteImpl() throws RemoteException {
+	public SiteImpl() throws RemoteException {		
 		super();
+		
 		this.sons = new ArrayList<SiteItf>();
 	}
 	
@@ -39,6 +40,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 */
 	public SiteImpl(SiteItf f, List<SiteItf> s) throws RemoteException {
 		super();
+		
 		this.father = f;
 		this.sons = s;
 	}
@@ -48,6 +50,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public boolean isRoot() throws RemoteException {
+		
 		return this.father == null;
 	}
 	
@@ -57,6 +60,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public void setFather(SiteItf f) throws RemoteException {
+		
 		this.father = f;
 	}
 	
@@ -66,6 +70,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public void setSons(List<SiteItf> f) throws RemoteException {
+		
 		this.sons = f;
 	}
 
@@ -74,6 +79,7 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public void addSon(SiteItf s) throws RemoteException {
+		
 		this.sons.add(s);
 	}
 	
@@ -83,8 +89,9 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 * @throws RemoteException
 	 */
 	public boolean receive(byte[] msg) throws RemoteException {
+		
 		this.msg = new String(msg);
-		System.out.println("Message reçu : "+this.msg);
+		System.out.println("Message reçu : "+ this.msg);
 		return this.sendToSons();
 	}
 
@@ -93,13 +100,42 @@ public class SiteImpl extends UnicastRemoteObject implements SiteItf {
 	 *  @throws RemoteException
 	 */
 	public boolean sendToSons() throws RemoteException {
+		
 		if(sons.size() > 0){
 			for(SiteItf s : sons ){
 				s.receive(this.msg.getBytes());
 			}	
 		}
-
 		return true;
 	}
+	
+	
+	/**
+	 *  Return the father of the RMI object
+	 *  @throws RemoteException
+	 */
+	public SiteItf getFather() throws RemoteException {
+		
+		return this.father;
+		
+	}
 
+	/**
+	 *  Return list of sons of the RMI object
+	 *   @throws RemoteException
+	 */
+	public List<SiteItf> getSons() throws RemoteException {
+		
+		return this.sons;
+	}
+	
+	/**
+	 * Return the message
+	 * @return the message of the RMIObject
+	 * @throws RemoteException
+	 */
+	public String getMsg()throws RemoteException {
+		
+		return this.msg;
+	}
 }
